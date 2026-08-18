@@ -3,26 +3,47 @@
 Et lille værktøj til at finde danske ord ud fra ordklasse og et
 to-bogstavs-mønster, sorteret efter hyppighed.
 
-## Kør projektet
+Dette er en ren klient-side version (HTML/CSS/JS) — der er ikke
+længere brug for en Python/Flask-server. Alt kører i browseren, så
+projektet kan hostes direkte fra en GitHub-repo, fx med GitHub Pages.
 
-1. Installér Flask:
-   ```
-   pip install -r requirements.txt
-   ```
-2. Start serveren fra denne mappe:
-   ```
-   python app.py
-   ```
-3. Åbn http://127.0.0.1:5000 i browseren.
+## Kør projektet lokalt
+
+Fordi siden henter `data/lemma-30k-2017.txt` med `fetch`, skal den
+køres via en lille lokal webserver (åbner du `index.html` direkte som
+en fil, blokerer browseren typisk fetch-kaldet).
+
+Fra denne mappe, kør fx:
+
+```
+python3 -m http.server 8000
+```
+
+Åbn derefter http://localhost:8000 i browseren.
+
+(Enhver anden simpel statisk server virker også, fx `npx serve`.)
+
+## Sådan lægges det på GitHub Pages
+
+1. Opret et repo på GitHub og push indholdet af denne mappe til det
+   (fx til `main`-branchen).
+2. Gå til repoets **Settings → Pages**.
+3. Under "Build and deployment" vælges **Deploy from a branch**, med
+   branch `main` og mappe `/ (root)`.
+4. Efter et øjebliks kørsel er siden tilgængelig på den URL, GitHub
+   viser (typisk `https://<brugernavn>.github.io/<repo-navn>/`).
 
 ## Struktur
 
-- `app.py` – Flask-server. Indlæser datasættet én gang ved opstart
-  og har endpointet `POST /api/generate`, som filtrerer og
-  returnerer ordlisten.
-- `data/lemma-30k-2017.txt` – datasættet (kode, ord, hyppighed).
-- `templates/index.html` – siden.
-- `static/style.css` / `static/script.js` – layout og interaktion.
+- `index.html` – siden (ordklasse-knapperne er nu skrevet direkte i
+  HTML'en i stedet for at blive genereret af Flask/Jinja).
+- `style.css` – layout, uændret fra originalen.
+- `script.js` – al logik: indlæser datasættet med `fetch`, filtrerer
+  det i browseren og opdaterer resultaterne. Dette erstatter både
+  Flask-endpointet `POST /api/generate` og den oprindelige
+  `static/script.js`.
+- `data/lemma-30k-2017.txt` – datasættet (kode, ord, hyppighed),
+  uændret.
 
 ## Bemærk om logik
 

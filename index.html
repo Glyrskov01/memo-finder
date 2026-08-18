@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -18,9 +18,14 @@
   </header>
 
   <section class="class-grid" id="classGrid">
-    {% for key, label in class_labels.items() %}
-    <button type="button" class="class-btn" data-class="{{ key }}">{{ label }}</button>
-    {% endfor %}
+    <button type="button" class="class-btn" data-class="adjektiv">Adjektiv</button>
+    <button type="button" class="class-btn" data-class="konjunktion">Konjunktion</button>
+    <button type="button" class="class-btn" data-class="adverbium">Adverbium</button>
+    <button type="button" class="class-btn" data-class="interjektion">Interjektion</button>
+    <button type="button" class="class-btn" data-class="substantiv">Substantiv</button>
+    <button type="button" class="class-btn" data-class="pronomen">Pronomen</button>
+    <button type="button" class="class-btn" data-class="præposition">Præposition</button>
+    <button type="button" class="class-btn" data-class="verbum">Verbum</button>
   </section>
 
   <section class="controls">
@@ -70,6 +75,6 @@
 
 </div>
 
-<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script src="script.js"></script>
 </body>
 </html>
