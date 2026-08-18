@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ordklasse-træner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="header">
+    <h1>Bogstavparfinder</h1>
+  </header>
+
+  <section class="class-grid" id="classGrid">
+    {% for key, label in class_labels.items() %}
+    <button type="button" class="class-btn" data-class="{{ key }}">{{ label }}</button>
+    {% endfor %}
+  </section>
+
+  <section class="controls">
+
+    <div class="control-block letters-block">
+      <label class="control-label" for="lettersInput">Bogstaver</label>
+      <input
+        type="text"
+        id="lettersInput"
+        class="letters-input"
+        maxlength="2"
+        placeholder="ab"
+        autocomplete="off"
+        spellcheck="false"
+      >
+    </div>
+
+    <div class="control-block start-block">
+      <p class="control-label">Ordet skal starte med:</p>
+      <div class="toggle-row">
+        <button type="button" class="start-btn" id="startFirstBtn" data-mode="first">Det første bogstav</button>
+        <button type="button" class="start-btn" id="startBothBtn" data-mode="both">Begge bogstaver</button>
+      </div>
+    </div>
+
+    <div class="control-block count-block">
+      <label class="control-label" for="countInput">Antal ord</label>
+      <input
+        type="number"
+        id="countInput"
+        class="count-input"
+        min="1"
+        max="2000"
+        value="20"
+        inputmode="numeric"
+      >
+    </div>
+
+  </section>
+
+  <section class="generate-row">
+    <button type="button" id="generateBtn" class="generate-btn">Generér</button>
+    <p class="status" id="statusText"></p>
+  </section>
+
+  <section class="results" id="results"></section>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
